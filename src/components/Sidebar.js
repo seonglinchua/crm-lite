@@ -16,7 +16,8 @@ const Sidebar = ({ expanded, setExpanded, mobileOpen, setMobileOpen }) => {
   const handleLogout = (e) => {
     e.preventDefault();
     localStorage.removeItem('loggedIn');
-    navigate('/'); // This will route to /crm-lite/ due to basename
+    // Optionally clear other user/session data here
+    navigate('/'); // Redirects to login or landing page
   };
 
   return (
