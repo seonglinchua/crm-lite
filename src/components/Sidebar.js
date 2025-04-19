@@ -15,7 +15,7 @@ const Sidebar = ({ expanded, setExpanded, mobileOpen, setMobileOpen }) => {
   const handleLogout = (e) => {
     e.preventDefault();
     localStorage.removeItem('loggedIn');
-    window.location.href = '/crm-lite/'; // Redirect to the correct base path for GitHub Pages
+    window.location.href = '/';
   };
 
   return (
