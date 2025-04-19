@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import Layout from '../components/Layout';
@@ -9,6 +9,14 @@ const dummyClients = [
 ];
 
 const ClientList = () => {
+  const [search, setSearch] = useState('');
+  const filteredClients = dummyClients.filter(
+    (client) =>
+      client.name.toLowerCase().includes(search.toLowerCase()) ||
+      client.email.toLowerCase().includes(search.toLowerCase()) ||
+      client.phone.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <Layout title="Clients">
       <div className="flex items-center justify-between mb-6">
@@ -19,6 +27,15 @@ const ClientList = () => {
           >
             + Add Client
           </Link>
+        </div>
+        <div className="w-full max-w-xs ml-4">
+          <input
+            type="text"
+            placeholder="Search clients..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:ring-indigo-500 focus:border-indigo-500 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100"
+          />
         </div>
       </div>
 
@@ -33,7 +50,7 @@ const ClientList = () => {
             </tr>
           </thead>
           <tbody className="text-gray-700 dark:text-gray-200 text-sm">
-            {dummyClients.map((client) => (
+            {filteredClients.map((client) => (
               <tr key={client.id} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors">
                 <td className="py-3 px-6">{client.name}</td>
                 <td className="py-3 px-6">{client.email}</td>
