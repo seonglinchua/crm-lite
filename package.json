@@ -14,7 +14,7 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^4.2.4"
   },
-  "homepage": "https://seonglinchua.github.io",
+  "homepage": "https://seonglinchua.github.io/crm-lite",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
