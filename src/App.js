@@ -9,7 +9,7 @@ function App() {
   const isAuthenticated = localStorage.getItem('loggedIn') === 'true';
 
   return (
-    <Router basename="/crm-lite">
+    <Router>
       <Routes>
         {/* Login Page */}
         <Route
