@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/crm-lite/static/css/main.d13d2197.css",
+    "main.js": "/crm-lite/static/js/main.4609abb5.js",
+    "index.html": "/crm-lite/index.html",
+    "main.d13d2197.css.map": "/crm-lite/static/css/main.d13d2197.css.map",
+    "main.4609abb5.js.map": "/crm-lite/static/js/main.4609abb5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d13d2197.css",
+    "static/js/main.4609abb5.js"
+  ]
+}
