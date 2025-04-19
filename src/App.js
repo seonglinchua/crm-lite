@@ -4,9 +4,11 @@ import LoginForm from './pages/LoginForm';
 import ClientList from './pages/ClientList';
 import Dashboard from './pages/Dashboard';
 import AddClient from './pages/AddClient';
+import { AuthProvider } from './context/AuthContext';
+import { useAuth } from './context/AuthContext';
 
 function App() {
-  const isAuthenticated = localStorage.getItem('loggedIn') === 'true';
+  const { isAuthenticated } = useAuth();
 
   return (
     <Router basename="/crm-lite">
@@ -49,4 +51,10 @@ function App() {
   );
 }
 
-export default App;
+export default function AppWithProvider() {
+  return (
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  );
+}

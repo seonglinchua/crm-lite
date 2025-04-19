@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FiHome, FiUsers, FiUserPlus, FiLogOut, FiChevronLeft, FiChevronRight, FiMenu } from 'react-icons/fi';
+import { useAuth } from '../context/AuthContext';
 
 const navItems = [
   { label: 'Dashboard', path: '/dashboard', icon: <FiHome /> },
@@ -12,12 +13,12 @@ const navItems = [
 const Sidebar = ({ expanded, setExpanded, mobileOpen, setMobileOpen }) => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const handleLogout = (e) => {
     e.preventDefault();
-    localStorage.removeItem('loggedIn');
-    // Optionally clear other user/session data here
-    navigate('/'); // Redirects to login or landing page
+    logout();
+    navigate('/');
   };
 
   return (

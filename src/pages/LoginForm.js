@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -8,6 +9,7 @@ function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +20,7 @@ function LoginForm() {
     setError('');
     setLoading(true);
     // Fake login logic
-    localStorage.setItem('loggedIn', 'true');
+    login();
     navigate('/'); // Redirect to /crm-lite/ due to basename
   };
 
