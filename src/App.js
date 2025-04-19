@@ -4,6 +4,7 @@ import LoginForm from './pages/LoginForm';
 import ClientList from './pages/ClientList';
 import Dashboard from './pages/Dashboard';
 import AddClient from './pages/AddClient';
+import ViewClient from './pages/ViewClient';
 import { AuthProvider } from './context/AuthContext';
 import { useAuth } from './context/AuthContext';
 
@@ -42,6 +43,14 @@ function App() {
           path="/clients/add"
           element={
             isAuthenticated ? <AddClient /> : <Navigate to="/" replace />
+          }
+        />
+
+        {/* View Client (Protected Route) */}
+        <Route
+          path="/clients/:id"
+          element={
+            isAuthenticated ? <ViewClient /> : <Navigate to="/" replace />
           }
         />
 
