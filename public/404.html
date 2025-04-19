@@ -11,6 +11,16 @@
     />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>CRM Lite</title>
+    <meta http-equiv="refresh" content="0; url=/crm-lite/" />
+    <script>
+      // Redirect all 404s to the index.html for React Router
+      (function() {
+        var l = window.location;
+        var pathname = l.pathname.replace(/^\/crm-lite/, '');
+        var newUrl = l.protocol + '//' + l.host + '/crm-lite/?redirect=' + encodeURIComponent(pathname + l.search + l.hash);
+        window.location.replace(newUrl);
+      })();
+    </script>
   </head>
   <body class="h-screen">
     <noscript>You need to enable JavaScript to run this app.</noscript>
