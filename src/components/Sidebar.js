@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FiHome, FiUsers, FiUserPlus, FiLogOut, FiChevronLeft, FiChevronRight, FiMenu } from 'react-icons/fi';
 
 const navItems = [
@@ -11,11 +11,12 @@ const navItems = [
 
 const Sidebar = ({ expanded, setExpanded, mobileOpen, setMobileOpen }) => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLogout = (e) => {
     e.preventDefault();
     localStorage.removeItem('loggedIn');
-    window.location.href = '/';
+    navigate('/'); // This will route to /crm-lite/ due to basename
   };
 
   return (
