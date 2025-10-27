@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FiHome, FiUsers, FiUserPlus, FiLogOut, FiChevronLeft, FiChevronRight, FiMenu } from 'react-icons/fi';
+import { FiHome, FiUsers, FiUserPlus, FiLogOut, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
 
 const navItems = [
@@ -21,6 +21,17 @@ const Sidebar = ({ expanded, setExpanded, mobileOpen, setMobileOpen }) => {
     navigate('/');
   };
 
+  // Close sidebar on Escape key
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && mobileOpen) {
+        setMobileOpen(false);
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [mobileOpen, setMobileOpen]);
+
   return (
     <>
       {/* Mobile overlay */}
@@ -32,7 +43,7 @@ const Sidebar = ({ expanded, setExpanded, mobileOpen, setMobileOpen }) => {
       {/* Sidebar */}
       <aside
         className={`transition-all duration-200 z-50 fixed top-0 left-0 h-screen bg-white dark:bg-gray-800 shadow-md flex flex-col
-          ${expanded ? 'w-64' : 'w-20'}
+          w-64 md:w-auto ${expanded ? 'md:w-64' : 'md:w-20'}
           ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}
           md:translate-x-0
         `}
@@ -40,7 +51,8 @@ const Sidebar = ({ expanded, setExpanded, mobileOpen, setMobileOpen }) => {
       >
         <div className="flex items-center gap-3 h-20 min-h-[72px] border-b dark:border-gray-700 px-4">
           <img src="/favicon.ico" alt="CRM Lite Logo" className="w-8 h-8" />
-          {expanded && <span className="text-xl font-bold text-indigo-600 dark:text-indigo-400">CRM Lite</span>}
+          <span className="text-xl font-bold text-indigo-600 dark:text-indigo-400 md:hidden">CRM Lite</span>
+          {expanded && <span className="hidden md:inline text-xl font-bold text-indigo-600 dark:text-indigo-400">CRM Lite</span>}
           <button
             onClick={() => setExpanded((v) => !v)}
             className="ml-auto p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors focus:outline-none hidden md:block"
@@ -51,10 +63,10 @@ const Sidebar = ({ expanded, setExpanded, mobileOpen, setMobileOpen }) => {
           {/* Mobile close button */}
           <button
             onClick={() => setMobileOpen(false)}
-            className="ml-auto p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors focus:outline-none md:hidden"
+            className="ml-auto p-3 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors focus:outline-none md:hidden touch-manipulation"
             aria-label="Close sidebar"
           >
-            <FiChevronLeft />
+            <FiChevronLeft className="w-5 h-5" />
           </button>
         </div>
         <nav className="flex-1 px-2 py-6 space-y-3">
@@ -64,20 +76,21 @@ const Sidebar = ({ expanded, setExpanded, mobileOpen, setMobileOpen }) => {
                 key={index}
                 href={item.path}
                 onClick={handleLogout}
-                className={`flex items-center gap-3 px-4 py-2 rounded text-sm transition-colors ${
+                className={`flex items-center gap-3 px-4 py-3 rounded text-sm transition-colors touch-manipulation ${
                   location.pathname === item.path
                     ? 'bg-indigo-100 dark:bg-gray-900 text-indigo-700 dark:text-indigo-300 font-medium'
                     : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
               >
                 <span className="text-lg">{item.icon}</span>
-                {expanded && <span>{item.label}</span>}
+                <span className="md:hidden">{item.label}</span>
+                {expanded && <span className="hidden md:inline">{item.label}</span>}
               </a>
             ) : (
               <Link
                 key={index}
                 to={item.path}
-                className={`flex items-center gap-3 px-4 py-2 rounded text-sm transition-colors ${
+                className={`flex items-center gap-3 px-4 py-3 rounded text-sm transition-colors touch-manipulation ${
                   location.pathname === item.path
                     ? 'bg-indigo-100 dark:bg-gray-900 text-indigo-700 dark:text-indigo-300 font-medium'
                     : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
@@ -85,7 +98,8 @@ const Sidebar = ({ expanded, setExpanded, mobileOpen, setMobileOpen }) => {
                 onClick={() => setMobileOpen(false)}
               >
                 <span className="text-lg">{item.icon}</span>
-                {expanded && <span>{item.label}</span>}
+                <span className="md:hidden">{item.label}</span>
+                {expanded && <span className="hidden md:inline">{item.label}</span>}
               </Link>
             )
           ))}
