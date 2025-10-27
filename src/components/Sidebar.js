@@ -132,8 +132,8 @@ const Sidebar = ({ expanded, setExpanded, mobileOpen, setMobileOpen }) => {
       isSubItem ? 'pl-12 pr-4' : 'px-4'
     }`;
     const activeClass = isActive
-      ? 'bg-indigo-100 dark:bg-gray-900 text-indigo-700 dark:text-indigo-300 font-medium'
-      : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700';
+      ? 'bg-gradient-to-r from-primary-50 to-primary-100 dark:from-primary-950 dark:to-primary-900 text-primary-700 dark:text-primary-300 font-medium shadow-soft'
+      : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:shadow-soft';
 
     return (
       <Link
@@ -156,10 +156,10 @@ const Sidebar = ({ expanded, setExpanded, mobileOpen, setMobileOpen }) => {
       <div key={group.id}>
         <button
           onClick={() => toggleGroup(group.id)}
-          className={`w-full flex items-center gap-3 px-4 py-3 rounded text-sm transition-colors touch-manipulation ${
+          className={`w-full flex items-center gap-3 px-4 py-3 rounded text-sm transition-all duration-200 touch-manipulation ${
             isActive
-              ? 'bg-indigo-50 dark:bg-gray-900/50 text-indigo-700 dark:text-indigo-300 font-medium'
-              : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+              ? 'bg-gradient-to-r from-primary-50 to-primary-100 dark:from-primary-950 dark:to-primary-900 text-primary-700 dark:text-primary-300 font-medium shadow-soft'
+              : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:shadow-soft'
           }`}
         >
           <span className="text-lg">{group.icon}</span>
@@ -197,7 +197,7 @@ const Sidebar = ({ expanded, setExpanded, mobileOpen, setMobileOpen }) => {
       />
       {/* Sidebar */}
       <aside
-        className={`transition-all duration-200 z-50 fixed top-0 left-0 h-screen bg-white dark:bg-gray-800 shadow-md flex flex-col
+        className={`transition-all duration-200 z-50 fixed top-0 left-0 h-screen bg-white dark:bg-slate-850 shadow-soft-lg flex flex-col
           w-64 md:w-auto ${expanded ? 'md:w-64' : 'md:w-20'}
           ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}
           md:translate-x-0
@@ -205,9 +205,17 @@ const Sidebar = ({ expanded, setExpanded, mobileOpen, setMobileOpen }) => {
         style={{ minWidth: expanded ? '16rem' : '5rem' }}
       >
         <div className="flex items-center gap-3 h-20 min-h-[72px] border-b dark:border-gray-700 px-4">
-          <img src={process.env.PUBLIC_URL + '/favicon.ico'} alt="CRM Lite Logo" className="w-8 h-8" />
-          <span className="text-xl font-bold text-indigo-600 dark:text-indigo-400 md:hidden">CRM Lite</span>
-          {expanded && <span className="hidden md:inline text-xl font-bold text-indigo-600 dark:text-indigo-400">CRM Lite</span>}
+          <img src={process.env.PUBLIC_URL + '/favicon.svg'} alt="CRM Lite Logo" className="w-10 h-10 flex-shrink-0" />
+          <div className="md:hidden flex flex-col leading-tight">
+            <span className="text-xl font-bold text-primary-600 dark:text-primary-400">CRM</span>
+            <span className="text-xs font-medium text-gray-500 dark:text-gray-400">Lite</span>
+          </div>
+          {expanded && (
+            <div className="hidden md:flex flex-col leading-tight">
+              <span className="text-xl font-bold text-primary-600 dark:text-primary-400">CRM</span>
+              <span className="text-xs font-medium text-gray-500 dark:text-gray-400">Lite</span>
+            </div>
+          )}
           <button
             onClick={() => setExpanded((v) => !v)}
             className="ml-auto p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors focus:outline-none hidden md:block"

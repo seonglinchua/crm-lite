@@ -41,7 +41,7 @@ const Layout = ({ children, title }) => {
     <div className="flex">
       <Sidebar expanded={sidebarExpanded} setExpanded={setSidebarExpanded} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
       <div
-        className={`transition-all duration-200 flex-1 min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 ${sidebarExpanded ? 'md:ml-64' : 'md:ml-20'} ${mobileOpen ? 'overflow-hidden' : ''}`}
+        className={`transition-all duration-200 flex-1 min-h-screen flex flex-col bg-gradient-to-br from-gray-50 via-gray-50 to-primary-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-slate-850 ${sidebarExpanded ? 'md:ml-64' : 'md:ml-20'} ${mobileOpen ? 'overflow-hidden' : ''}`}
       >
         <Header
           onToggleDarkMode={toggleDarkMode}

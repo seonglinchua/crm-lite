@@ -182,15 +182,15 @@ const Dashboard = () => {
               <Link
                 key={idx}
                 to={module.link}
-                className="group relative bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
+                className="group relative bg-white dark:bg-slate-850 rounded-xl shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${module.color} opacity-0 group-hover:opacity-5 transition-opacity`} />
+                <div className={`absolute inset-0 bg-gradient-to-br ${module.color} opacity-0 group-hover:opacity-10 transition-opacity`} />
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className={`p-3 rounded-lg bg-gradient-to-br ${module.color} text-white`}>
                       {module.icon}
                     </div>
-                    <FiArrowRight className="w-5 h-5 text-gray-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transform group-hover:translate-x-1 transition-all" />
+                    <FiArrowRight className="w-5 h-5 text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 transform group-hover:translate-x-1 transition-all" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
                     {module.title}
@@ -198,7 +198,7 @@ const Dashboard = () => {
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
                     {module.description}
                   </p>
-                  <div className="text-xs font-medium text-indigo-600 dark:text-indigo-400">
+                  <div className="text-xs font-medium text-primary-600 dark:text-primary-400">
                     {displayStats}
                   </div>
                 </div>
@@ -212,7 +212,7 @@ const Dashboard = () => {
           {stats.map((stat, idx) => (
             <div
               key={stat.label}
-              className={`flex items-center gap-4 p-5 rounded-lg shadow bg-white dark:bg-gray-800 transition-colors ${stat.color}`}
+              className={`flex items-center gap-4 p-5 rounded-lg shadow-soft bg-white dark:bg-slate-850 transition-all duration-200 hover:shadow-soft-lg border border-gray-100 dark:border-gray-700 ${stat.color}`}
             >
               <div>{stat.icon}</div>
               <div>
@@ -230,28 +230,28 @@ const Dashboard = () => {
           Tasks & Activities Overview
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="flex items-center gap-4 p-5 rounded-lg shadow bg-white dark:bg-gray-800 bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 transition-colors">
+          <div className="flex items-center gap-4 p-5 rounded-lg shadow-soft bg-white dark:bg-slate-850 bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 transition-all duration-200 hover:shadow-soft-lg border border-gray-100 dark:border-gray-700">
             <div><FiCheckSquare className="w-6 h-6" /></div>
             <div>
               <div className="text-2xl font-bold">{taskStats.total}</div>
               <div className="text-sm font-medium opacity-80">Total Tasks</div>
             </div>
           </div>
-          <div className="flex items-center gap-4 p-5 rounded-lg shadow bg-white dark:bg-gray-800 bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300 transition-colors">
+          <div className="flex items-center gap-4 p-5 rounded-lg shadow-soft bg-white dark:bg-slate-850 bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300 transition-all duration-200 hover:shadow-soft-lg border border-gray-100 dark:border-gray-700">
             <div><FiClock className="w-6 h-6" /></div>
             <div>
               <div className="text-2xl font-bold">{taskStats.pending}</div>
               <div className="text-sm font-medium opacity-80">Pending</div>
             </div>
           </div>
-          <div className="flex items-center gap-4 p-5 rounded-lg shadow bg-white dark:bg-gray-800 bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300 transition-colors">
+          <div className="flex items-center gap-4 p-5 rounded-lg shadow-soft bg-white dark:bg-slate-850 bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300 transition-all duration-200 hover:shadow-soft-lg border border-gray-100 dark:border-gray-700">
             <div><FiClock className="w-6 h-6" /></div>
             <div>
               <div className="text-2xl font-bold">{taskStats.inProgress}</div>
               <div className="text-sm font-medium opacity-80">In Progress</div>
             </div>
           </div>
-          <div className="flex items-center gap-4 p-5 rounded-lg shadow bg-white dark:bg-gray-800 bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 transition-colors">
+          <div className="flex items-center gap-4 p-5 rounded-lg shadow-soft bg-white dark:bg-slate-850 bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 transition-all duration-200 hover:shadow-soft-lg border border-gray-100 dark:border-gray-700">
             <div><FiCheckSquare className="w-6 h-6" /></div>
             <div>
               <div className="text-2xl font-bold">{taskStats.completed}</div>
@@ -262,30 +262,30 @@ const Dashboard = () => {
       </div>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 transition-colors">
+      <div className="bg-white dark:bg-slate-850 rounded-lg shadow-soft p-6 transition-all duration-200 hover:shadow-soft-lg border border-gray-100 dark:border-gray-700">
         <h2 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">Client Types</h2>
         <Pie data={clientTypeData} options={{ plugins: { legend: { position: 'bottom' } } }} />
       </div>
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 transition-colors">
+      <div className="bg-white dark:bg-slate-850 rounded-lg shadow-soft p-6 transition-all duration-200 hover:shadow-soft-lg border border-gray-100 dark:border-gray-700">
         <h2 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">AUM Growth</h2>
         <Line data={aumGrowthData} options={{ plugins: { legend: { display: false } }, scales: { y: { beginAtZero: false } } }} />
       </div>
     </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 transition-colors">
+        <div className="bg-white dark:bg-slate-850 rounded-lg shadow-soft p-6 transition-all duration-200 hover:shadow-soft-lg border border-gray-100 dark:border-gray-700">
           <h2 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">Recent Activity</h2>
           <ul className="space-y-3">
             {recentActivity.map((item, idx) => (
               <li key={idx} className="flex items-center gap-2 text-gray-700 dark:text-gray-200">
-                <span className="inline-block w-2 h-2 bg-indigo-400 dark:bg-indigo-300 rounded-full"></span>
+                <span className="inline-block w-2 h-2 bg-primary-400 dark:bg-primary-300 rounded-full"></span>
                 {item}
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 transition-colors">
+        <div className="bg-white dark:bg-slate-850 rounded-lg shadow-soft p-6 transition-all duration-200 hover:shadow-soft-lg border border-gray-100 dark:border-gray-700">
           <h2 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">Recent Tasks</h2>
           <ul className="space-y-3">
             {recentTasks.length > 0 ? (
@@ -301,7 +301,7 @@ const Dashboard = () => {
           </ul>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 transition-colors">
+        <div className="bg-white dark:bg-slate-850 rounded-lg shadow-soft p-6 transition-all duration-200 hover:shadow-soft-lg border border-gray-100 dark:border-gray-700">
           <h2 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100 flex items-center gap-2">
             <FiAlertTriangle className="text-yellow-500" /> Alerts
           </h2>
