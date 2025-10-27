@@ -30,7 +30,6 @@ const Layout = ({ children, title }) => {
   }, [sidebarExpanded]);
 
   const toggleDarkMode = () => setDarkMode((v) => !v);
-  const toggleSidebar = () => setSidebarExpanded((v) => !v);
 
   // Determine alert count for notification badge
   let alertCount = 0;
@@ -42,18 +41,15 @@ const Layout = ({ children, title }) => {
     <div className="flex">
       <Sidebar expanded={sidebarExpanded} setExpanded={setSidebarExpanded} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
       <div
-        className={`transition-all duration-200 flex-1 min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 ${sidebarExpanded ? 'ml-64' : 'ml-20'} ${mobileOpen ? 'overflow-hidden' : ''}`}
+        className={`transition-all duration-200 flex-1 min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 ${sidebarExpanded ? 'md:ml-64' : 'md:ml-20'} ${mobileOpen ? 'overflow-hidden' : ''}`}
       >
-        <div className="md:hidden flex items-center px-4 pt-4 pb-2">
-          <button
-            onClick={() => setMobileOpen(true)}
-            className="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors focus:outline-none"
-            aria-label="Open sidebar"
-          >
-            <svg className="w-6 h-6 text-gray-700 dark:text-gray-200" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
-          </button>
-        </div>
-        <Header onToggleDarkMode={toggleDarkMode} darkMode={darkMode} title={title} alertCount={alertCount} />
+        <Header
+          onToggleDarkMode={toggleDarkMode}
+          darkMode={darkMode}
+          title={title}
+          alertCount={alertCount}
+          onOpenMobileMenu={() => setMobileOpen(true)}
+        />
         <div className="px-6 pt-2">
           <Breadcrumb />
         </div>

@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { FiSun, FiMoon, FiBell, FiUser } from 'react-icons/fi';
+import { FiSun, FiMoon, FiBell, FiUser, FiMenu } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
 
-const Header = ({ title, children, onToggleDarkMode, darkMode, alertCount = 0 }) => {
+const Header = ({ title, children, onToggleDarkMode, darkMode, alertCount = 0, onOpenMobileMenu }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const { logout } = useAuth();
@@ -24,16 +24,26 @@ const Header = ({ title, children, onToggleDarkMode, darkMode, alertCount = 0 })
   }, [dropdownOpen]);
 
   return (
-    <header className="bg-white dark:bg-gray-800 shadow-sm px-6 pt-6 pb-4 flex items-center justify-between transition-colors">
-      <div className="flex items-center gap-4 flex-1 min-w-0">
+    <header className="bg-white dark:bg-gray-800 shadow-sm px-4 md:px-6 pt-4 md:pt-6 pb-4 flex items-center justify-between transition-colors">
+      <div className="flex items-center gap-3 md:gap-4 flex-1 min-w-0">
+        {/* Mobile hamburger menu */}
+        {onOpenMobileMenu && (
+          <button
+            onClick={onOpenMobileMenu}
+            className="md:hidden p-3 -ml-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors focus:outline-none touch-manipulation"
+            aria-label="Open sidebar"
+          >
+            <FiMenu className="w-6 h-6 text-gray-700 dark:text-gray-200" />
+          </button>
+        )}
         {title && (
-          <h1 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 truncate">{title}</h1>
+          <h1 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-100 truncate">{title}</h1>
         )}
         {children && <div className="ml-auto flex items-center gap-2">{children}</div>}
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 md:gap-4">
         <button
-          className="relative p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors focus:outline-none"
+          className="relative p-2.5 md:p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors focus:outline-none touch-manipulation"
           aria-label="View alerts"
         >
           <FiBell className="w-5 h-5 text-gray-700 dark:text-gray-200" />
@@ -45,7 +55,7 @@ const Header = ({ title, children, onToggleDarkMode, darkMode, alertCount = 0 })
         </button>
         <button
           onClick={onToggleDarkMode}
-          className="ml-2 p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+          className="p-2.5 md:p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors touch-manipulation"
           aria-label="Toggle dark mode"
         >
           {darkMode ? <FiSun className="w-5 h-5" /> : <FiMoon className="w-5 h-5" />}
@@ -54,7 +64,7 @@ const Header = ({ title, children, onToggleDarkMode, darkMode, alertCount = 0 })
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setDropdownOpen((v) => !v)}
-            className="ml-2 p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="p-2.5 md:p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 touch-manipulation"
             aria-label="User menu"
           >
             <FiUser className="w-5 h-5" />
