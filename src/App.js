@@ -21,6 +21,7 @@ import { AuthProvider } from './context/AuthContext';
 import { ContactProvider } from './context/ContactContext';
 import { TaskProvider } from './context/TaskContext';
 import { OpportunityProvider } from './context/OpportunityContext';
+import { NotificationProvider } from './context/NotificationContext';
 import { useAuth } from './context/AuthContext';
 
 function App() {
@@ -172,13 +173,15 @@ function App() {
 export default function AppWithProvider() {
   return (
     <AuthProvider>
-      <ContactProvider>
-        <TaskProvider>
-          <OpportunityProvider>
-            <App />
-          </OpportunityProvider>
-        </TaskProvider>
-      </ContactProvider>
+      <NotificationProvider>
+        <ContactProvider>
+          <TaskProvider>
+            <OpportunityProvider>
+              <App />
+            </OpportunityProvider>
+          </TaskProvider>
+        </ContactProvider>
+      </NotificationProvider>
     </AuthProvider>
   );
 }

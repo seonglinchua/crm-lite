@@ -28,9 +28,14 @@ function LoginForm() {
     <div
       className="min-h-screen flex items-center justify-center relative"
       style={{
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        backgroundImage: 'url(https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
       }}
     >
+      {/* Overlay for better contrast */}
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/80 to-purple-900/80 backdrop-blur-sm"></div>
       <div className="relative z-10 w-full flex items-center justify-center">
         <form
           onSubmit={handleSubmit}
