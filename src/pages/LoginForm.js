@@ -25,13 +25,12 @@ function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 relative">
-      <img
-        src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80"
-        alt="Background"
-        className="absolute inset-0 w-full h-full object-cover z-0"
-        style={{ filter: 'brightness(0.6)' }}
-      />
+    <div
+      className="min-h-screen flex items-center justify-center relative"
+      style={{
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      }}
+    >
       <div className="relative z-10 w-full flex items-center justify-center">
         <form
           onSubmit={handleSubmit}
