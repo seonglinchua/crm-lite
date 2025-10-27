@@ -24,7 +24,7 @@ const Header = ({ title, children, onToggleDarkMode, darkMode, alertCount = 0, o
   }, [dropdownOpen]);
 
   return (
-    <header className="bg-white dark:bg-gray-800 shadow-sm px-4 md:px-6 pt-4 md:pt-6 pb-4 flex items-center justify-between transition-colors">
+    <header className="bg-white dark:bg-slate-850 shadow-soft px-4 md:px-6 pt-4 md:pt-6 pb-4 flex items-center justify-between transition-all duration-200 border-b border-gray-100 dark:border-gray-700">
       <div className="flex items-center gap-3 md:gap-4 flex-1 min-w-0">
         {/* Mobile hamburger menu */}
         {onOpenMobileMenu && (
@@ -55,7 +55,7 @@ const Header = ({ title, children, onToggleDarkMode, darkMode, alertCount = 0, o
         </button>
         <button
           onClick={onToggleDarkMode}
-          className="p-2.5 md:p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors touch-manipulation"
+          className="p-2.5 md:p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-gray-700 dark:to-gray-600 text-primary-700 dark:text-gray-200 hover:shadow-soft transition-all duration-200 touch-manipulation"
           aria-label="Toggle dark mode"
         >
           {darkMode ? <FiSun className="w-5 h-5" /> : <FiMoon className="w-5 h-5" />}
@@ -64,13 +64,13 @@ const Header = ({ title, children, onToggleDarkMode, darkMode, alertCount = 0, o
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setDropdownOpen((v) => !v)}
-            className="p-2.5 md:p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 touch-manipulation"
+            className="p-2.5 md:p-2 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 text-white hover:shadow-glow focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 touch-manipulation"
             aria-label="User menu"
           >
             <FiUser className="w-5 h-5" />
           </button>
           {dropdownOpen && (
-            <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 rounded shadow-lg py-2 z-50 border border-gray-100 dark:border-gray-700">
+            <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-slate-850 rounded-lg shadow-soft-lg py-2 z-50 border border-gray-100 dark:border-gray-700 animate-slide-down">
               <div className="px-4 py-2 text-gray-700 dark:text-gray-200 text-sm">Profile</div>
               <button
                 className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"

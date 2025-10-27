@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Footer = () => (
-  <footer className="bg-white dark:bg-gray-800 text-center text-xs py-2 text-gray-400 dark:text-gray-500 border-t dark:border-gray-700 transition-colors">
+  <footer className="bg-white dark:bg-slate-850 text-center text-xs py-3 text-gray-400 dark:text-gray-500 border-t border-gray-100 dark:border-gray-700 transition-all duration-200">
     <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
       <span>© 2025 CRM Lite. All rights reserved.</span>
       <span className="hidden sm:inline mx-2">|</span>
