@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Sidebar from '../components/Sidebar';
 import Layout from '../components/Layout';
 
 const dummyClients = [

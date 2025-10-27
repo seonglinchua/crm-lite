@@ -1,8 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
-import { FiUsers, FiUserPlus, FiPieChart, FiAlertTriangle, FiCheckSquare, FiClock } from 'react-icons/fi';
+import {
+  FiUsers, FiUserPlus, FiPieChart, FiAlertTriangle, FiCheckSquare, FiClock,
+  FiUserCheck, FiTrendingUp, FiBarChart2, FiCalendar, FiArrowRight
+} from 'react-icons/fi';
 import { Pie, Line } from 'react-chartjs-2';
 import { useTask } from '../context/TaskContext';
+import { useContacts } from '../context/ContactContext';
 import {
   Chart as ChartJS,
   ArcElement,
@@ -80,8 +85,60 @@ const aumGrowthData = {
   ],
 };
 
+const moduleCards = [
+  {
+    title: 'Client Management',
+    description: 'Manage your clients and accounts',
+    icon: <FiUsers className="w-8 h-8" />,
+    link: '/clients',
+    color: 'from-indigo-500 to-indigo-600',
+    stats: '120 Clients'
+  },
+  {
+    title: 'Contacts & Leads',
+    description: 'Track contacts and potential leads',
+    icon: <FiUserCheck className="w-8 h-8" />,
+    link: '/contacts',
+    color: 'from-green-500 to-green-600',
+    stats: 'Dynamic from context'
+  },
+  {
+    title: 'Tasks & Activities',
+    description: 'Manage tasks and track activities',
+    icon: <FiCheckSquare className="w-8 h-8" />,
+    link: '/tasks',
+    color: 'from-purple-500 to-purple-600',
+    stats: 'Dynamic from context'
+  },
+  {
+    title: 'Sales Pipeline',
+    description: 'Track opportunities and deals',
+    icon: <FiTrendingUp className="w-8 h-8" />,
+    link: '/opportunities',
+    color: 'from-blue-500 to-blue-600',
+    stats: 'Coming soon'
+  },
+  {
+    title: 'Reports & Analytics',
+    description: 'View insights and generate reports',
+    icon: <FiBarChart2 className="w-8 h-8" />,
+    link: '/reports',
+    color: 'from-yellow-500 to-yellow-600',
+    stats: 'Available now'
+  },
+  {
+    title: 'Calendar',
+    description: 'Schedule and view your activities',
+    icon: <FiCalendar className="w-8 h-8" />,
+    link: '/calendar',
+    color: 'from-pink-500 to-pink-600',
+    stats: 'Task calendar'
+  }
+];
+
 const Dashboard = () => {
   const { tasks, getOverdueTasks, getUpcomingTasks } = useTask();
+  const { contacts } = useContacts();
 
   // Calculate task statistics
   const taskStats = {
@@ -93,6 +150,13 @@ const Dashboard = () => {
     upcoming: getUpcomingTasks(7).length
   };
 
+  // Calculate contact statistics
+  const contactStats = {
+    total: contacts.length,
+    leads: contacts.filter(c => c.type === 'lead').length,
+    contacts: contacts.filter(c => c.type === 'contact').length
+  };
+
   // Get recent tasks (last 5)
   const recentTasks = [...tasks]
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
@@ -100,6 +164,49 @@ const Dashboard = () => {
 
   return (
     <Layout title="Dashboard Overview">
+      {/* Module Cards */}
+      <div className="mb-8">
+        <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">
+          Quick Access
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {moduleCards.map((module, idx) => {
+            let displayStats = module.stats;
+            if (module.title === 'Contacts & Leads') {
+              displayStats = `${contactStats.total} Total`;
+            } else if (module.title === 'Tasks & Activities') {
+              displayStats = `${taskStats.total} Tasks`;
+            }
+
+            return (
+              <Link
+                key={idx}
+                to={module.link}
+                className="group relative bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${module.color} opacity-0 group-hover:opacity-5 transition-opacity`} />
+                <div className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className={`p-3 rounded-lg bg-gradient-to-br ${module.color} text-white`}>
+                      {module.icon}
+                    </div>
+                    <FiArrowRight className="w-5 h-5 text-gray-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transform group-hover:translate-x-1 transition-all" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
+                    {module.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                    {module.description}
+                  </p>
+                  <div className="text-xs font-medium text-indigo-600 dark:text-indigo-400">
+                    {displayStats}
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
       <div className="mb-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, idx) => (

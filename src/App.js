@@ -11,9 +11,16 @@ import ViewContact from './pages/ViewContact';
 import TaskList from './pages/TaskList';
 import AddTask from './pages/AddTask';
 import ViewTask from './pages/ViewTask';
+import OpportunityList from './pages/OpportunityList';
+import AddOpportunity from './pages/AddOpportunity';
+import ViewOpportunity from './pages/ViewOpportunity';
+import Reports from './pages/Reports';
+import Calendar from './pages/Calendar';
+import Settings from './pages/Settings';
 import { AuthProvider } from './context/AuthContext';
 import { ContactProvider } from './context/ContactContext';
 import { TaskProvider } from './context/TaskContext';
+import { OpportunityProvider } from './context/OpportunityContext';
 import { useAuth } from './context/AuthContext';
 
 function App() {
@@ -110,7 +117,53 @@ function App() {
           }
         />
 
-        {/* Add More Routes Later */}
+        {/* Opportunity List (Protected Route) */}
+        <Route
+          path="/opportunities"
+          element={
+            isAuthenticated ? <OpportunityList /> : <Navigate to="/" replace />
+          }
+        />
+
+        {/* Add Opportunity (Protected Route) */}
+        <Route
+          path="/opportunities/add"
+          element={
+            isAuthenticated ? <AddOpportunity /> : <Navigate to="/" replace />
+          }
+        />
+
+        {/* View Opportunity (Protected Route) */}
+        <Route
+          path="/opportunities/:id"
+          element={
+            isAuthenticated ? <ViewOpportunity /> : <Navigate to="/" replace />
+          }
+        />
+
+        {/* Reports (Protected Route) */}
+        <Route
+          path="/reports"
+          element={
+            isAuthenticated ? <Reports /> : <Navigate to="/" replace />
+          }
+        />
+
+        {/* Calendar (Protected Route) */}
+        <Route
+          path="/calendar"
+          element={
+            isAuthenticated ? <Calendar /> : <Navigate to="/" replace />
+          }
+        />
+
+        {/* Settings (Protected Route) */}
+        <Route
+          path="/settings"
+          element={
+            isAuthenticated ? <Settings /> : <Navigate to="/" replace />
+          }
+        />
       </Routes>
     </Router>
   );
@@ -121,7 +174,9 @@ export default function AppWithProvider() {
     <AuthProvider>
       <ContactProvider>
         <TaskProvider>
-          <App />
+          <OpportunityProvider>
+            <App />
+          </OpportunityProvider>
         </TaskProvider>
       </ContactProvider>
     </AuthProvider>
