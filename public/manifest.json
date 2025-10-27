@@ -3,17 +3,17 @@
   "name": "CRM Lite - Customer Relationship Management",
   "icons": [
     {
-      "src": "favicon.svg",
+      "src": "/crm-lite/favicon.svg",
       "type": "image/svg+xml",
       "sizes": "any"
     },
     {
-      "src": "favicon.ico",
+      "src": "/crm-lite/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
   ],
-  "start_url": ".",
+  "start_url": "/crm-lite/",
   "display": "standalone",
   "theme_color": "#6366f1",
   "background_color": "#ffffff"
