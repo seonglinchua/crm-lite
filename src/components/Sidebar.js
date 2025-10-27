@@ -50,7 +50,7 @@ const Sidebar = ({ expanded, setExpanded, mobileOpen, setMobileOpen }) => {
         style={{ minWidth: expanded ? '16rem' : '5rem' }}
       >
         <div className="flex items-center gap-3 h-20 min-h-[72px] border-b dark:border-gray-700 px-4">
-          <img src="/favicon.ico" alt="CRM Lite Logo" className="w-8 h-8" />
+          <img src={process.env.PUBLIC_URL + '/favicon.ico'} alt="CRM Lite Logo" className="w-8 h-8" />
           <span className="text-xl font-bold text-indigo-600 dark:text-indigo-400 md:hidden">CRM Lite</span>
           {expanded && <span className="hidden md:inline text-xl font-bold text-indigo-600 dark:text-indigo-400">CRM Lite</span>}
           <button
