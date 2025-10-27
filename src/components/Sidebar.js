@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FiHome, FiUsers, FiUserPlus, FiLogOut, FiChevronLeft, FiChevronRight, FiUserCheck, FiUserX } from 'react-icons/fi';
+import { FiHome, FiUsers, FiUserPlus, FiLogOut, FiChevronLeft, FiChevronRight, FiUserCheck, FiUserX, FiCheckSquare, FiPlus } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
 
 const navItems = [
@@ -9,6 +9,8 @@ const navItems = [
   { label: 'Add Client', path: '/clients/add', icon: <FiUserPlus /> },
   { label: 'Contacts & Leads', path: '/contacts', icon: <FiUserCheck /> },
   { label: 'Add Contact/Lead', path: '/contacts/add', icon: <FiUserX /> },
+  { label: 'Tasks & Activities', path: '/tasks', icon: <FiCheckSquare /> },
+  { label: 'Add Task', path: '/tasks/add', icon: <FiPlus /> },
   { label: 'Logout', path: '/', icon: <FiLogOut /> }
 ];
 

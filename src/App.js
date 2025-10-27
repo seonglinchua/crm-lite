@@ -8,8 +8,12 @@ import ViewClient from './pages/ViewClient';
 import ContactList from './pages/ContactList';
 import AddContact from './pages/AddContact';
 import ViewContact from './pages/ViewContact';
+import TaskList from './pages/TaskList';
+import AddTask from './pages/AddTask';
+import ViewTask from './pages/ViewTask';
 import { AuthProvider } from './context/AuthContext';
 import { ContactProvider } from './context/ContactContext';
+import { TaskProvider } from './context/TaskContext';
 import { useAuth } from './context/AuthContext';
 
 function App() {
@@ -82,6 +86,30 @@ function App() {
           }
         />
 
+        {/* Task List (Protected Route) */}
+        <Route
+          path="/tasks"
+          element={
+            isAuthenticated ? <TaskList /> : <Navigate to="/" replace />
+          }
+        />
+
+        {/* Add Task (Protected Route) */}
+        <Route
+          path="/tasks/add"
+          element={
+            isAuthenticated ? <AddTask /> : <Navigate to="/" replace />
+          }
+        />
+
+        {/* View Task (Protected Route) */}
+        <Route
+          path="/tasks/:id"
+          element={
+            isAuthenticated ? <ViewTask /> : <Navigate to="/" replace />
+          }
+        />
+
         {/* Add More Routes Later */}
       </Routes>
     </Router>
@@ -92,7 +120,9 @@ export default function AppWithProvider() {
   return (
     <AuthProvider>
       <ContactProvider>
-        <App />
+        <TaskProvider>
+          <App />
+        </TaskProvider>
       </ContactProvider>
     </AuthProvider>
   );
