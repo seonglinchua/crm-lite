@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FiHome, FiUsers, FiUserPlus, FiLogOut, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { FiHome, FiUsers, FiUserPlus, FiLogOut, FiChevronLeft, FiChevronRight, FiUserCheck, FiUserX } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
 
 const navItems = [
   { label: 'Dashboard', path: '/dashboard', icon: <FiHome /> },
   { label: 'Clients', path: '/clients', icon: <FiUsers /> },
   { label: 'Add Client', path: '/clients/add', icon: <FiUserPlus /> },
+  { label: 'Contacts & Leads', path: '/contacts', icon: <FiUserCheck /> },
+  { label: 'Add Contact/Lead', path: '/contacts/add', icon: <FiUserX /> },
   { label: 'Logout', path: '/', icon: <FiLogOut /> }
 ];
 

@@ -5,7 +5,11 @@ import ClientList from './pages/ClientList';
 import Dashboard from './pages/Dashboard';
 import AddClient from './pages/AddClient';
 import ViewClient from './pages/ViewClient';
+import ContactList from './pages/ContactList';
+import AddContact from './pages/AddContact';
+import ViewContact from './pages/ViewContact';
 import { AuthProvider } from './context/AuthContext';
+import { ContactProvider } from './context/ContactContext';
 import { useAuth } from './context/AuthContext';
 
 function App() {
@@ -54,6 +58,30 @@ function App() {
           }
         />
 
+        {/* Contact List (Protected Route) */}
+        <Route
+          path="/contacts"
+          element={
+            isAuthenticated ? <ContactList /> : <Navigate to="/" replace />
+          }
+        />
+
+        {/* Add Contact (Protected Route) */}
+        <Route
+          path="/contacts/add"
+          element={
+            isAuthenticated ? <AddContact /> : <Navigate to="/" replace />
+          }
+        />
+
+        {/* View Contact (Protected Route) */}
+        <Route
+          path="/contacts/:id"
+          element={
+            isAuthenticated ? <ViewContact /> : <Navigate to="/" replace />
+          }
+        />
+
         {/* Add More Routes Later */}
       </Routes>
     </Router>
@@ -63,7 +91,9 @@ function App() {
 export default function AppWithProvider() {
   return (
     <AuthProvider>
-      <App />
+      <ContactProvider>
+        <App />
+      </ContactProvider>
     </AuthProvider>
   );
 }
